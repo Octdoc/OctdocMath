@@ -19,7 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="formulastest.cpp" />
     <ClCompile Include="linalgtest.cpp" />
+    <ClCompile Include="linetest.cpp" />
+    <ClCompile Include="plaintest.cpp" />
+    <ClCompile Include="pointtest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OctdocMath\OctdocMath.vcxproj">

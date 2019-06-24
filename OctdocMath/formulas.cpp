@@ -14,7 +14,7 @@ int octdoc::mth::Quadratic(float a, float b, float c, float& s1, float& s2)
 	a = 0.5f / a;
 	b *= a;
 	dis = sqrtf(dis) * a;
-	s1 = b + dis;
-	s2 = b - dis;
+	s1 = -b - dis;
+	s2 = -b + dis;
 	return 2;
 }

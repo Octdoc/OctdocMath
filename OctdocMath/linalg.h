@@ -30,7 +30,7 @@ namespace octdoc
 		public:
 			explicit float2();
 			explicit float2(const float f);
-			explicit float2(const float * const v);
+			explicit float2(const float* const v);
 			explicit float2(const float x, const float y);
 			float2(const float2& v);
 			explicit float2(const float3& v);
@@ -73,7 +73,7 @@ namespace octdoc
 			float& operator()(const int i);
 			explicit operator float3() const;
 			explicit operator float4() const;
-			explicit operator float*() const;
+			explicit operator float* () const;
 		};
 
 		class float3
@@ -86,7 +86,7 @@ namespace octdoc
 		public:
 			explicit float3();
 			explicit float3(const float f);
-			explicit float3(const float * const v);
+			explicit float3(const float* const v);
 			explicit float3(const float x, const float y, const float z);
 			explicit float3(const float2& v);
 			float3(const float3& v);
@@ -129,7 +129,7 @@ namespace octdoc
 			float& operator()(const int i);
 			explicit operator float2() const;
 			explicit operator float4() const;
-			explicit operator float*() const;
+			explicit operator float* () const;
 		};
 
 		class float4
@@ -143,7 +143,7 @@ namespace octdoc
 		public:
 			explicit float4();
 			explicit float4(const float f);
-			explicit float4(const float * const v);
+			explicit float4(const float* const v);
 			explicit float4(const float x, const float y, const float z, const float w);
 			explicit float4(const float2& v);
 			explicit float4(const float3& v);
@@ -185,7 +185,7 @@ namespace octdoc
 			float& operator()(const int i);
 			explicit operator float2() const;
 			explicit operator float3() const;
-			explicit operator float*() const;
+			explicit operator float* () const;
 		};
 
 		class quaternion
@@ -199,7 +199,7 @@ namespace octdoc
 		public:
 			quaternion();
 			quaternion(const float f);
-			quaternion(const float * const q);
+			quaternion(const float* const q);
 			quaternion(const float x, const float y, const float z, const float w);
 			quaternion(const quaternion& q);
 			bool isZeroVector() const;
@@ -229,7 +229,7 @@ namespace octdoc
 			bool isNear(quaternion q, float eps);
 			float operator()(const int i) const;
 			float& operator()(const int i);
-			explicit operator float*() const;
+			explicit operator float* () const;
 		};
 
 		class float2x2
@@ -239,7 +239,7 @@ namespace octdoc
 		public:
 			explicit float2x2();
 			explicit float2x2(const float f);
-			explicit float2x2(const float * const m);
+			explicit float2x2(const float* const m);
 			explicit float2x2(const float _00, const float _01, const float _10, const float _11);
 			float2x2(const float2x2& m);
 			explicit float2x2(const float3x3& m);
@@ -290,7 +290,7 @@ namespace octdoc
 		public:
 			explicit float3x3();
 			explicit float3x3(const float f);
-			explicit float3x3(const float * const m);
+			explicit float3x3(const float* const m);
 			explicit float3x3(const float _00, const float _01, const float _02,
 				const float _10, const float _11, const float _12,
 				const float _20, const float _21, const float _22);
@@ -358,7 +358,7 @@ namespace octdoc
 		public:
 			explicit float4x4();
 			explicit float4x4(const float f);
-			explicit float4x4(const float * const m);
+			explicit float4x4(const float* const m);
 			explicit float4x4(const float _00, const float _01, const float _02, const float _03,
 				const float _10, const float _11, const float _12, const float _13,
 				const float _20, const float _21, const float _22, const float _23,
@@ -430,6 +430,7 @@ namespace octdoc
 			bool isNear(float4x4& m, float eps);
 		};
 
+		bool isNear(float a, float b, float eps = EPS);
 		float3 Transform(float4x4& m, float3 v);
 		float3x3 NormalToRotationMatrix(float3 n);
 
@@ -456,7 +457,7 @@ namespace octdoc
 		float2x2 operator*(const float f, const float2x2& m);
 		float3x3 operator*(const float f, const float3x3& m);
 		float4x4 operator*(const float f, const float4x4& m);
-		
+
 		std::ostream& operator<<(std::ostream& os, const float2& v);
 		std::ostream& operator<<(std::ostream& os, const float3& v);
 		std::ostream& operator<<(std::ostream& os, const float4& v);

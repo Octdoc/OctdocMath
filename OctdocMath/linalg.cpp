@@ -1864,9 +1864,15 @@ namespace octdoc
 
 #pragma region Functions
 
+		bool isNear(float a, float b, float eps)
+		{
+			return fabsf(a - b) < eps;
+		}
+
 		float3 Transform(float4x4& m, float3 v)
 		{
-			return float3(m * float4(v));
+			float4 v4(v.x, v.y, v.z, 1.0f);
+			return float3(m * v4);
 		}
 
 		float3x3 NormalToRotationMatrix(float3 n)
