@@ -110,11 +110,11 @@ namespace octdoc
 		}
 		float4x4 Position::GetScaleMatrixInv()
 		{
-			return float4x4::Scaling(-scale);
+			return float4x4::Scaling(mth::float3(1.0f) / scale);
 		}
 		float4x4 Position::GetWorldMatrixInv()
 		{
-			return float4x4::ScalingRotationTranslation(-scale, -rotation, -position);
+			return float4x4::ScalingRotationTranslation(mth::float3(1.0f) / scale, -rotation, -position);
 		}
 		float3 Position::GetLookDirection()
 		{
