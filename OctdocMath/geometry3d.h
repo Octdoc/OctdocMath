@@ -9,82 +9,82 @@ namespace octdoc
 		class Point3D
 		{
 		public:
-			float3 p;
+			double3 p;
 
 		public:
 			Point3D();
-			Point3D(float3 point);
+			Point3D(double3 point);
 
-			float Distance(float3 point);
-			float DistanceSquare(float3 point);
-			float TimeToGetClose(float3 position, float3 direction, float distance);
+			double Distance(double3 point);
+			double DistanceSquare(double3 point);
+			double TimeToGetClose(double3 position, double3 direction, double distance);
 		};
 
 		class Line3D
 		{
 		public:
-			float3 p;
-			float3 v;
+			double3 p;
+			double3 v;
 
 		public:
 			Line3D();
-			Line3D(float3 point, float3 direction);
+			Line3D(double3 point, double3 direction);
 
-			float Distance(float3 point);
-			float DistanceSquare(float3 point);
-			float TimeToGetClose(float3 position, float3 direction, float distance);
+			double Distance(double3 point);
+			double DistanceSquare(double3 point);
+			double TimeToGetClose(double3 position, double3 direction, double distance);
 		};
 
 		class Plain3D
 		{
 		public:
-			float3 n;
-			float d;
+			double3 n;
+			double d;
 
 		public:
 			Plain3D();
-			Plain3D(float3 normal, float distance);
+			Plain3D(double3 normal, double distance);
 
-			bool IsPointOn(float3 point, float eps = EPS);
-			bool IsPointBelow(float3 point);
-			bool IsPointOver(float3 point);
-			float Distance(float3 point);
-			float DirectionalDistance(Position& ray);
+			bool IsPointOn(double3 point, double eps = EPS);
+			bool IsPointBelow(double3 point);
+			bool IsPointOver(double3 point);
+			double Distance(double3 point);
+			double DirectionalDistance(Position<double>& ray);
 			// return: how many raydirs are necessary to reach the plain
-			float DirectionalDistance(float3 raypos, float3 raydir);
-			float TimeToGetClose(float3 position, float3 direction, float distance);
+			double DirectionalDistance(double3 raypos, double3 raydir);
+			double TimeToGetClose(double3 position, double3 direction, double distance);
 		};
 
 		class Triangle3D
 		{
 			Plain3D m_plain;
-			float3 m_vertices[3];
+			double3 m_vertices[3];
 
 		public:
 			Triangle3D();
-			Triangle3D(float3 tri[3]);
-			Triangle3D(float3 v1, float3 v2, float3 v3);
-			Triangle3D(float3 tri[3], float3 plainNormal, float plainDistance);
+			Triangle3D(double3 tri[3]);
+			Triangle3D(double3 v1, double3 v2, double3 v3);
+			Triangle3D(double3 tri[3], double3 plainNormal, double plainDistance);
 
-			bool IsPointOver(float3 point);
-			bool IsPointOn(float3 point, float eps = EPS);
+			bool IsPointOver(double3 point);
+			bool IsPointOn(double3 point, double eps = EPS);
 
 			inline Plain3D& getPlain() { return m_plain; }
-			inline float3 getPlainNormal() { return m_plain.n; }
-			inline float getPlainDistance() { return m_plain.d; }
-			inline float3* getVertices(unsigned index) { return m_vertices; }
-			inline float3 getVertex(unsigned index) { return m_vertices[index]; }
+			inline double3 getPlainNormal() { return m_plain.n; }
+			inline double getPlainDistance() { return m_plain.d; }
+			inline double3* getVertices(unsigned index) { return m_vertices; }
+			inline double3 getVertex(unsigned index) { return m_vertices[index]; }
 		};
 
-		bool IsPointOverTriangle(float3 tri[3], float3 point);
+		bool IsPointOverTriangle(double3 tri[3], double3 point);
 
-		float DistanceLinePoint(float3 linePoint, float3 lineDirection, float3 point);
-		float DistanceSquareLinePoint(float3 linePoint, float3 lineDirection, float3 point);
+		double DistanceLinePoint(double3 linePoint, double3 lineDirection, double3 point);
+		double DistanceSquareLinePoint(double3 linePoint, double3 lineDirection, double3 point);
 
 		// Points on the lines that are closest to the other line
-		void MinDistancePoints2Lines(float3 p1, float3 v1, float3 p2, float3 v2, float3& out1, float3& out2);
+		void MinDistancePoints2Lines(double3 p1, double3 v1, double3 p2, double3 v2, double3& out1, double3& out2);
 
-		float3 LMSLineIntersection(Line3D lines[], int count);
-		float3 LMSLineIntersection(float3 linePoints[], float3 lineDirections[], int count);
+		double3 LMSLineIntersection(Line3D lines[], int count);
+		double3 LMSLineIntersection(double3 linePoints[], double3 lineDirections[], int count);
 	}
 }

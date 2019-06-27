@@ -9,50 +9,50 @@ namespace octdoc
 		class Point2D
 		{
 		public:
-			float2 p;
+			double2 p;
 
 		public:
 			Point2D();
-			Point2D(float2 point);
+			Point2D(double2 point);
 		};
 
 		class Line2D
 		{
 		public:
-			float2 p;
-			float2 v;
+			double2 p;
+			double2 v;
 
 		public:
 			Line2D();
-			Line2D(float2 point, float angle);
-			Line2D(float2 point, float2 direction);
-			static Line2D From2Points(float2 point1, float2 point2);
+			Line2D(double2 point, double angle);
+			Line2D(double2 point, double2 direction);
+			static Line2D From2Points(double2 point1, double2 point2);
 
-			inline float Angle() { return v.Angle(); }
-			float2 Intersection(Line2D line);
+			inline double Angle() { return v.Angle(); }
+			double2 Intersection(Line2D line);
 		};
 
 		class Circle2D
 		{
 		public:
-			float2 c;
-			float r;
+			double2 c;
+			double r;
 
 		public:
 			Circle2D();
-			Circle2D(float2 centre, float radius);
-			static Circle2D SameAngleCircle(float2 p1, float2 p2, float a);
+			Circle2D(double2 centre, double radius);
+			static Circle2D SameAngleCircle(double2 p1, double2 p2, double a);
 
-			bool IsOnArea(float2 p);
-			bool IsOnPerimeter(float2 p, float eps = EPS);
-			float DistanceFromPerimeter(float2 p);
-			int Intersection(Line2D line, float2 out[2]);
-			int Intersection(Circle2D circle, float2 out[2]);
+			bool IsOnArea(double2 p);
+			bool IsOnPerimeter(double2 p, double eps = EPS);
+			double DistanceFromPerimeter(double2 p);
+			int Intersection(Line2D line, double2 out[2]);
+			int Intersection(Circle2D circle, double2 out[2]);
 		};
 
-		float2 Intersection2Lines(float2 p1, float2 v1, float2 p2, float2 v2);
-		int Intersection2Circles(float2 c1, float r1, float2 c2, float r2, float2 out[2]);
-		int IntersectionCircleLine(float2 p, float2 v, float2 c, float r, float2 out[2]);
-		bool IsPointOnCircle(float2 p, float2 c, float r, float eps = EPS);
+		double2 Intersection2Lines(double2 p1, double2 v1, double2 p2, double2 v2);
+		int Intersection2Circles(double2 c1, double r1, double2 c2, double r2, double2 out[2]);
+		int IntersectionCircleLine(double2 p, double2 v, double2 c, double r, double2 out[2]);
+		bool IsPointOnCircle(double2 p, double2 c, double r, double eps = EPS);
 	}
 }

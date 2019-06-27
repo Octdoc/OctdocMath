@@ -141,15 +141,20 @@
     <ClInclude Include="formulas.h" />
     <ClInclude Include="geometry2d.h" />
     <ClInclude Include="geometry3d.h" />
+    <ClInclude Include="helpers.h" />
     <ClInclude Include="linalg.h" />
+    <ClInclude Include="matrix2x2.h" />
+    <ClInclude Include="matrix3x3.h" />
+    <ClInclude Include="matrix4x4.h" />
     <ClInclude Include="position.h" />
+    <ClInclude Include="quaternion.h" />
+    <ClInclude Include="vector2.h" />
+    <ClInclude Include="vector3.h" />
+    <ClInclude Include="vector4.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="formulas.cpp" />
     <ClCompile Include="geometry2d.cpp" />
     <ClCompile Include="geometry3d.cpp" />
-    <ClCompile Include="linalg.cpp" />
-    <ClCompile Include="position.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
