@@ -59,9 +59,9 @@ namespace octdoc
 			mat4x4<T> GetScaleMatrix() { return mat4x4<T>::Scaling(scale); }
 			mat4x4<T> GetWorldMatrix() { return mat4x4<T>::ScalingRotationTranslation(scale, rotation, position); }
 			mat4x4<T> GetPositionMatrixInv() { return mat4x4<T>::Translation(-position); }
-			mat4x4<T> GetRotationMatrixInv() { return mat4x4<T>::Rotation(-rotation); }
+			mat4x4<T> GetRotationMatrixInv() { return mat4x4<T>::Rotation(rotation).Transposed(); }
 			mat4x4<T> GetScaleMatrixInv() { return mat4x4<T>::Scaling(vec3<T>(1) / scale); }
-			mat4x4<T> GetWorldMatrixInv() { return mat4x4<T>::ScalingRotationTranslation(vec3<T>(1) / scale, -rotation, -position); }
+			mat4x4<T> GetWorldMatrixInv() { return GetScaleMatrixInv() * GetRotationMatrixInv() * GetPositionMatrixInv(); }
 			vec3<T> GetLookDirection() { return mat3x3<T>::Rotation(rotation) * vec3<T>(0, 0, 1); }
 			void Reset()
 			{

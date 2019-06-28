@@ -536,10 +536,10 @@ namespace octdoc
 			bool isNear(mat4x4<T> m, T eps = EPS)
 			{
 				return
-					isNear(m_mat[0][0], m(0, 0), eps) && isNear(m_mat[0][1], m(0, 1), eps) && isNear(m_mat[0][2], m(0, 2), eps) && isNear(m_mat[0][3], m(0, 3), eps) &&
-					isNear(m_mat[1][0], m(1, 0), eps) && isNear(m_mat[1][1], m(1, 1), eps) && isNear(m_mat[1][2], m(1, 2), eps) && isNear(m_mat[1][3], m(1, 3), eps) &&
-					isNear(m_mat[2][0], m(2, 0), eps) && isNear(m_mat[2][1], m(2, 1), eps) && isNear(m_mat[2][2], m(2, 2), eps) && isNear(m_mat[2][3], m(2, 3), eps) &&
-					isNear(m_mat[3][0], m(3, 0), eps) && isNear(m_mat[3][1], m(3, 1), eps) && isNear(m_mat[3][2], m(3, 2), eps) && isNear(m_mat[3][3], m(3, 3), eps);
+					mth::isNear(m_mat[0][0], m(0, 0), eps) && mth::isNear(m_mat[0][1], m(0, 1), eps) && mth::isNear(m_mat[0][2], m(0, 2), eps) && mth::isNear(m_mat[0][3], m(0, 3), eps) &&
+					mth::isNear(m_mat[1][0], m(1, 0), eps) && mth::isNear(m_mat[1][1], m(1, 1), eps) && mth::isNear(m_mat[1][2], m(1, 2), eps) && mth::isNear(m_mat[1][3], m(1, 3), eps) &&
+					mth::isNear(m_mat[2][0], m(2, 0), eps) && mth::isNear(m_mat[2][1], m(2, 1), eps) && mth::isNear(m_mat[2][2], m(2, 2), eps) && mth::isNear(m_mat[2][3], m(2, 3), eps) &&
+					mth::isNear(m_mat[3][0], m(3, 0), eps) && mth::isNear(m_mat[3][1], m(3, 1), eps) && mth::isNear(m_mat[3][2], m(3, 2), eps) && mth::isNear(m_mat[3][3], m(3, 3), eps);
 			}
 			template <typename S>
 			explicit operator mat4x4<S>()

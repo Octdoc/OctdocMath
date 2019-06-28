@@ -24,6 +24,7 @@
     <ClCompile Include="linetest.cpp" />
     <ClCompile Include="plaintest.cpp" />
     <ClCompile Include="pointtest.cpp" />
+    <ClCompile Include="positiontest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OctdocMath\OctdocMath.vcxproj">

@@ -8,12 +8,14 @@ namespace octdoc
 	{
 		class Point3D
 		{
-		public:
-			double3 p;
+			double3 m_point;
 
 		public:
 			Point3D();
 			Point3D(double3 point);
+
+			inline double3 getPoint() { return m_point; }
+			inline void setPoint(double3 point) { m_point = point; }
 
 			double Distance(double3 point);
 			double DistanceSquare(double3 point);
@@ -22,13 +24,19 @@ namespace octdoc
 
 		class Line3D
 		{
-		public:
-			double3 p;
-			double3 v;
+			double3 m_point;
+			double3 m_direction;
 
 		public:
 			Line3D();
-			Line3D(double3 point, double3 direction);
+			Line3D(double3 point, double3 unitDirection);
+
+			static Line3D From2Points(double3 p1, double3 p2) { return Line3D(p1, (p2 - p1).Normalized()); }
+
+			inline double3 getPoint() { return m_point; }
+			inline void setPoint(double3 point) { m_point = point; }
+			inline double3 getDirection() { return m_direction; }
+			inline void setDirection(double3 unitDirection) { m_direction = unitDirection; }
 
 			double Distance(double3 point);
 			double DistanceSquare(double3 point);
@@ -37,13 +45,17 @@ namespace octdoc
 
 		class Plain3D
 		{
-		public:
-			double3 n;
-			double d;
+			double3 m_normal;
+			double m_distance;
 
 		public:
 			Plain3D();
-			Plain3D(double3 normal, double distance);
+			Plain3D(double3 unitNormal, double distance);
+
+			inline double3 getNormal() { return m_normal; }
+			inline void setNormal(double3 unitNormal) { m_normal = unitNormal; }
+			inline double getDistance() { return m_distance; }
+			inline void setDistance(double distance) { m_distance = distance; }
 
 			bool IsPointOn(double3 point, double eps = EPS);
 			bool IsPointBelow(double3 point);
@@ -70,8 +82,8 @@ namespace octdoc
 			bool IsPointOn(double3 point, double eps = EPS);
 
 			inline Plain3D& getPlain() { return m_plain; }
-			inline double3 getPlainNormal() { return m_plain.n; }
-			inline double getPlainDistance() { return m_plain.d; }
+			inline double3 getPlainNormal() { return m_plain.getNormal(); }
+			inline double getPlainDistance() { return m_plain.getDistance(); }
 			inline double3* getVertices(unsigned index) { return m_vertices; }
 			inline double3 getVertex(unsigned index) { return m_vertices[index]; }
 		};

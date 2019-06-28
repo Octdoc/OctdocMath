@@ -14,11 +14,11 @@ namespace UnitTest
 		{
 			{
 				Point3D point;
-				Assert::IsTrue(point.p.isZeroVector(), L"empty ctor");
+				Assert::IsTrue(point.getPoint().isZeroVector(), L"empty ctor");
 			} {
 				double3 p(1.0, 2.0, 3.0);
 				Point3D point(p);
-				Assert::IsTrue(point.p == p, L"double3, double ctor");
+				Assert::IsTrue(point.getPoint() == p, L"double3, double ctor");
 			}
 		}	
 		TEST_METHOD(Distance_Tests)

@@ -5,20 +5,20 @@ namespace octdoc
 {
 	namespace mth
 	{
-		Point3D::Point3D() :p() {}
-		Point3D::Point3D(double3 point) : p(point) {}
+		Point3D::Point3D() :m_point() {}
+		Point3D::Point3D(double3 point) : m_point(point) {}
 
 		double Point3D::Distance(double3 point)
 		{
-			return (p - point).Length();
+			return (m_point - point).Length();
 		}
 		double Point3D::DistanceSquare(double3 point)
 		{
-			return (p - point).LengthSquare();
+			return (m_point - point).LengthSquare();
 		}
 		double Point3D::TimeToGetClose(double3 position, double3 direction, double distance)
 		{
-			position -= p;
+			position -= m_point;
 			double a = direction.LengthSquare();
 			double b = 2 * position.Dot(direction);
 			double c = position.LengthSquare() - distance * distance;
@@ -26,43 +26,45 @@ namespace octdoc
 			return (Quadratic(a, b, c, s1, s2) == 0) ? NAN : (s2 < 0 ? s2 : s1);
 		}
 
-		Line3D::Line3D() :p(), v() {}
-		Line3D::Line3D(double3 point, double3 direction) : p(point), v(direction) {}
+		Line3D::Line3D() :m_point(), m_direction() {}
+		Line3D::Line3D(double3 point, double3 direction) : m_point(point), m_direction(direction) {}
 		double Line3D::Distance(double3 point)
 		{
-			return DistanceLinePoint(p, v, point);
+			return DistanceLinePoint(m_point, m_direction, point);
 		}
 		double Line3D::DistanceSquare(double3 point)
 		{
-			return DistanceSquareLinePoint(p, v, point);
+			return DistanceSquareLinePoint(m_point, m_direction, point);
 		}
 		double Line3D::TimeToGetClose(double3 position, double3 direction, double distance)
 		{
-			position -= p;
-			double a = v.Cross(direction).LengthSquare();
-			double b = 2 * v.Cross(position).Dot(v.Cross(direction));
-			double c = v.Cross(position).LengthSquare() - distance * distance;
+			position -= m_point;
+			double3 vxd = m_direction.Cross(direction);
+			double3 vxp = m_direction.Cross(position);
+			double a = vxd.LengthSquare();
+			double b = 2 * vxp.Dot(vxd);
+			double c = vxp.LengthSquare() - distance * distance;
 			double s1, s2;
 			return (Quadratic(a, b, c, s1, s2) == 0) ? NAN : (s2 < 0 ? s2 : s1);
 		}
 
-		Plain3D::Plain3D() : n(), d(0) {}
-		Plain3D::Plain3D(double3 normal, double distance) : n(normal), d(distance) {}
+		Plain3D::Plain3D() : m_normal(), m_distance(0) {}
+		Plain3D::Plain3D(double3 normal, double distance) : m_normal(normal), m_distance(distance) {}
 		bool Plain3D::IsPointOn(double3 point, double eps)
 		{
-			return fabs(point.Dot(n) - d) < eps;
+			return fabs(point.Dot(m_normal) - m_distance) < eps;
 		}
 		bool Plain3D::IsPointBelow(double3 point)
 		{
-			return point.Dot(n) < d;
+			return point.Dot(m_normal) < m_distance;
 		}
 		bool Plain3D::IsPointOver(double3 point)
 		{
-			return point.Dot(n) > d;
+			return point.Dot(m_normal) > m_distance;
 		}
 		double Plain3D::Distance(double3 point)
 		{
-			return n.Dot(point) - d;
+			return m_normal.Dot(point) - m_distance;
 		}
 		double Plain3D::DirectionalDistance(Position<double>& ray)
 		{
@@ -70,15 +72,15 @@ namespace octdoc
 		}
 		double Plain3D::DirectionalDistance(double3 raypos, double3 raydir)
 		{
-			double distTowardPlain = -n.Dot(raydir);
-			double distFromPlain = n.Dot(raypos) - d;
+			double distTowardPlain = -m_normal.Dot(raydir);
+			double distFromPlain = m_normal.Dot(raypos) - m_distance;
 			return distFromPlain / distTowardPlain;
 		}
 
 		double Plain3D::TimeToGetClose(double3 position, double3 direction, double distance)
 		{
-			double distTowardPlain = -n.Dot(direction);
-			double distFromPlain = n.Dot(position) - d;
+			double distTowardPlain = -m_normal.Dot(direction);
+			double distFromPlain = m_normal.Dot(position) - m_distance;
 			if (distFromPlain < 0)
 				distFromPlain += distance;
 			else
@@ -93,16 +95,16 @@ namespace octdoc
 			m_vertices[0] = v1;
 			m_vertices[1] = v2;
 			m_vertices[2] = v3;
-			m_plain.n = (m_vertices[1] - m_vertices[2]).Cross(m_vertices[1] - m_vertices[0]).Normalized();
-			m_plain.d = m_plain.n.Dot(m_vertices[0]);
+			m_plain.setNormal((m_vertices[1] - m_vertices[2]).Cross(m_vertices[1] - m_vertices[0]).Normalized());
+			m_plain.setDistance(m_plain.getNormal().Dot(m_vertices[0]));
 		}
 		Triangle3D::Triangle3D(double3 tri[3], double3 plainNormal, double plainDistance)
 		{
 			m_vertices[0] = tri[0];
 			m_vertices[1] = tri[1];
 			m_vertices[2] = tri[2];
-			m_plain.n = plainNormal;
-			m_plain.n = plainDistance;
+			m_plain.setNormal(plainNormal);
+			m_plain.setDistance(plainDistance);
 		}
 		bool Triangle3D::IsPointOver(double3 point)
 		{
@@ -154,8 +156,8 @@ namespace octdoc
 			double3 vec;
 			for (int i = 0; i < count; i++)
 			{
-				double3 p = lines[i].p;
-				double3 v = lines[i].v;
+				double3 p = lines[i].getPoint();
+				double3 v = lines[i].getDirection();
 				double oneovervls = 1 / v.LengthSquare();
 				double3x3 tmp = double3x3::Identity() - double3x3(
 					v.x * v.x, v.x * v.y, v.x * v.z,

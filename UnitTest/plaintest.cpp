@@ -14,12 +14,13 @@ namespace UnitTest
 		{
 			{
 				Plain3D plain;
-				Assert::IsTrue(plain.n.isZeroVector() && plain.d == 0.0, L"empty ctor");
+				Assert::IsTrue(plain.getNormal().isZeroVector() && plain.getDistance() == 0.0, L"empty ctor");
 			} {
 				double3 n(1.0, 2.0, 3.0);
 				double d = 4.0;
+				n.Normalize();
 				Plain3D plain(n, d);
-				Assert::IsTrue(plain.n == n && plain.d == d, L"double3, double ctor");
+				Assert::IsTrue(plain.getNormal() == n && plain.getDistance() == d, L"double3, double ctor");
 			}
 		}
 		TEST_METHOD(IsPointOn_Test)
@@ -56,7 +57,7 @@ namespace UnitTest
 		{
 			double3x3 rotation = double3x3::Rotation(1.0, 2.0, 3.0);
 			Plain3D plain(rotation * double3(1.0, 0.0, 0.0), 1.0);
-			double3 p1 = rotation * double3(0.5f, 3.0, 2.0);
+			double3 p1 = rotation * double3(0.5, 3.0, 2.0);
 			double3 p2 = rotation * double3(2.0, 3.0, 2.0);
 
 			Assert::IsTrue(isNear(plain.Distance(p1), -0.5), L"Negative");

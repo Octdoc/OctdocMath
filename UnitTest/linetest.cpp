@@ -14,12 +14,19 @@ namespace UnitTest
 		{
 			{
 				Line3D line;
-				Assert::IsTrue(line.p.isZeroVector() && line.v.isZeroVector(), L"empty ctor");
+				Assert::IsTrue(line.getPoint().isZeroVector() && line.getDirection().isZeroVector(), L"empty ctor");
 			} {
 				double3 p(1.0, 2.0, 3.0);
 				double3 v(4.0, 5.0, 6.0);
+				v.Normalize();
 				Line3D line(p, v);
-				Assert::IsTrue(line.p == p && line.v == v, L"double3, double ctor");
+				Assert::IsTrue(line.getPoint() == p && line.getDirection() == v, L"double3, double ctor");
+			} {
+				double3 p(1.0, 2.0, 3.0);
+				double3 v(4.0, 5.0, 6.0);
+				Line3D line = Line3D::From2Points(p, p + v);
+				v.Normalize();
+				Assert::IsTrue(line.getPoint() == p && line.getDirection() == v, L"From2Points");
 			}
 		}
 		TEST_METHOD(Distance_Tests)
