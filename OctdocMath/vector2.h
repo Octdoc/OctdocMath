@@ -24,6 +24,7 @@ namespace octdoc
 			explicit vec2(const vec4<T> v) :x(v.x), y(v.y) {}
 			bool isZeroVector() const { return x == 0 && y == 0; }
 			T Dot(const vec2<T> v) const { return x * v.x + y * v.y; }
+			T Cross(const vec2<T> v) const { return x * v.y - v.x * y; }
 			T LengthSquare() const { return x * x + y * y; }
 			T Length() const { return sqrt(LengthSquare()); }
 			T Angle() const { return atan2(y, x); }

@@ -41,7 +41,7 @@ namespace octdoc
 			void MoveDown(T d) { position.y -= d; }
 			void Move(vec3<T> delta) { position += delta; }
 			void MoveInLookDirection(T d) { MoveInLookDirection(vec3<T>(0, 0, d)); }
-			void MoveInLookDirection(vec3<T> delta) { position += mat3x3<T>::Rotation(rotation) * delta; }
+			void MoveInLookDirection(vec3<T> delta) { position += GetRotationMatrix3x3() * delta; }
 
 			void LookDown(T r) { rotation.x += r; }
 			void LookUp(T r) { rotation.x -= r; }
@@ -62,7 +62,11 @@ namespace octdoc
 			mat4x4<T> GetRotationMatrixInv() { return mat4x4<T>::Rotation(rotation).Transposed(); }
 			mat4x4<T> GetScaleMatrixInv() { return mat4x4<T>::Scaling(vec3<T>(1) / scale); }
 			mat4x4<T> GetWorldMatrixInv() { return GetScaleMatrixInv() * GetRotationMatrixInv() * GetPositionMatrixInv(); }
-			vec3<T> GetLookDirection() { return mat3x3<T>::Rotation(rotation) * vec3<T>(0, 0, 1); }
+			vec3<T> GetLookDirection() { return GetRotationMatrix3x3() * vec3<T>(0, 0, 1); }
+			mat3x3<T> GetRotationMatrix3x3() { return mat3x3<T>::Rotation(rotation); }
+			mat3x3<T> GetScaleMatrix3x3() { return mat3x3<T>::Scaling(scale); }
+			mat3x3<T> GetRotationMatrixInv3x3() { return mat3x3<T>::Rotation(rotation).Transposed(); }
+			mat3x3<T> GetScaleMatrixInv3x3() { return mat3x3<T>::Scaling(vec3<T>(1) / scale); }
 			void Reset()
 			{
 				position = 0;

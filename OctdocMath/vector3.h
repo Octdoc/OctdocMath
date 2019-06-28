@@ -26,7 +26,7 @@ namespace octdoc
 			explicit vec3(const vec4<T> v) : x(v.x), y(v.y), z(v.z) {}
 			bool isZeroVector() const { return x == 0 && y == 0 && z == 0; }
 			T Dot(const vec3<T> v) const { return x * v.x + y * v.y + z * v.z; }
-			vec3 Cross(const vec3<T> v) const { return vec3<T>(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x); }
+			vec3<T> Cross(const vec3<T> v) const { return vec3<T>(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x); }
 			T LengthSquare() const { return x * x + y * y + z * z; }
 			T Length() const { return sqrt(LengthSquare()); }
 			void Abs() { x = fabs(x); y = fabs(y); z = fabs(z); }
