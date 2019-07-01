@@ -1,5 +1,5 @@
 #include "CppUnitTest.h"
-#include "linalg.h"
+#include "linalg.hpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace octdoc::mth;

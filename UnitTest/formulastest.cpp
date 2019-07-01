@@ -1,6 +1,6 @@
 #include "CppUnitTest.h"
-#include "linalg.h"
-#include "formulas.h"
+#include "linalg.hpp"
+#include "formulas.hpp"
 #include <string>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;

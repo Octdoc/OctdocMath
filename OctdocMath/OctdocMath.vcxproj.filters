@@ -13,54 +13,73 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\linalg">
+      <UniqueIdentifier>{3166af46-7e3e-4ce1-bfd0-f403d82d012c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\geometry2d">
+      <UniqueIdentifier>{12466de7-1346-4f5d-9ec8-1d117df5d2cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\geometry3d">
+      <UniqueIdentifier>{096cade0-b0d8-4a49-91c5-27a7a47cae57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="geometry3d.h">
+    <ClInclude Include="formulas.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="linalg.h">
+    <ClInclude Include="position.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="position.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="linalg.hpp">
+      <Filter>Header Files\linalg</Filter>
     </ClInclude>
-    <ClInclude Include="formulas.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="matrix2x2.hpp">
+      <Filter>Header Files\linalg</Filter>
     </ClInclude>
-    <ClInclude Include="geometry2d.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="matrix3x3.hpp">
+      <Filter>Header Files\linalg</Filter>
     </ClInclude>
-    <ClInclude Include="vector2.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="matrix4x4.hpp">
+      <Filter>Header Files\linalg</Filter>
     </ClInclude>
-    <ClInclude Include="helpers.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="quaternion.hpp">
+      <Filter>Header Files\linalg</Filter>
     </ClInclude>
-    <ClInclude Include="vector3.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="vector2.hpp">
+      <Filter>Header Files\linalg</Filter>
     </ClInclude>
-    <ClInclude Include="vector4.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="vector3.hpp">
+      <Filter>Header Files\linalg</Filter>
     </ClInclude>
-    <ClInclude Include="matrix2x2.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="vector4.hpp">
+      <Filter>Header Files\linalg</Filter>
     </ClInclude>
-    <ClInclude Include="matrix3x3.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="circle2d.hpp">
+      <Filter>Header Files\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="matrix4x4.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="geometry2d.hpp">
+      <Filter>Header Files\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="quaternion.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="line2d.hpp">
+      <Filter>Header Files\geometry2d</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="geometry2d.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="geometry3d.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClInclude Include="point2d.hpp">
+      <Filter>Header Files\geometry2d</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry3d.hpp">
+      <Filter>Header Files\geometry3d</Filter>
+    </ClInclude>
+    <ClInclude Include="line3d.hpp">
+      <Filter>Header Files\geometry3d</Filter>
+    </ClInclude>
+    <ClInclude Include="plain3d.hpp">
+      <Filter>Header Files\geometry3d</Filter>
+    </ClInclude>
+    <ClInclude Include="point3d.hpp">
+      <Filter>Header Files\geometry3d</Filter>
+    </ClInclude>
+    <ClInclude Include="triangle3d.hpp">
+      <Filter>Header Files\geometry3d</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

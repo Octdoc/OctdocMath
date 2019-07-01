@@ -138,23 +138,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="formulas.h" />
-    <ClInclude Include="geometry2d.h" />
-    <ClInclude Include="geometry3d.h" />
-    <ClInclude Include="helpers.h" />
-    <ClInclude Include="linalg.h" />
-    <ClInclude Include="matrix2x2.h" />
-    <ClInclude Include="matrix3x3.h" />
-    <ClInclude Include="matrix4x4.h" />
-    <ClInclude Include="position.h" />
-    <ClInclude Include="quaternion.h" />
-    <ClInclude Include="vector2.h" />
-    <ClInclude Include="vector3.h" />
-    <ClInclude Include="vector4.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="geometry2d.cpp" />
-    <ClCompile Include="geometry3d.cpp" />
+    <ClInclude Include="circle2d.hpp" />
+    <ClInclude Include="formulas.hpp" />
+    <ClInclude Include="geometry2d.hpp" />
+    <ClInclude Include="geometry3d.hpp" />
+    <ClInclude Include="linalg.hpp" />
+    <ClInclude Include="line2d.hpp" />
+    <ClInclude Include="line3d.hpp" />
+    <ClInclude Include="matrix2x2.hpp" />
+    <ClInclude Include="matrix3x3.hpp" />
+    <ClInclude Include="matrix4x4.hpp" />
+    <ClInclude Include="plain3d.hpp" />
+    <ClInclude Include="point2d.hpp" />
+    <ClInclude Include="point3d.hpp" />
+    <ClInclude Include="position.hpp" />
+    <ClInclude Include="quaternion.hpp" />
+    <ClInclude Include="triangle3d.hpp" />
+    <ClInclude Include="vector2.hpp" />
+    <ClInclude Include="vector3.hpp" />
+    <ClInclude Include="vector4.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

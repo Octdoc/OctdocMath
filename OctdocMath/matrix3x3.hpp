@@ -1,11 +1,19 @@
 #pragma once
 
-#include "helpers.h"
+#include "formulas.hpp"
+#include <iostream>
 
 namespace octdoc
 {
 	namespace mth
 	{
+		template<typename>class vec2;
+		template<typename>class vec3;
+		template<typename>class vec4;
+		template<typename>class mat2x2;
+		template<typename>class mat3x3;
+		template<typename>class mat4x4;
+
 		template <typename T>
 		class mat3x3
 		{
@@ -436,6 +444,8 @@ namespace octdoc
 					m_mat[1][0], m_mat[1][1], m_mat[1][2],
 					m_mat[2][0], m_mat[2][1], m_mat[2][2]);
 			}
+			template <typename S>
+			mat3x3<S> WithType() { return (mat3x3<S>) * this; }
 		};
 
 		template <typename T>

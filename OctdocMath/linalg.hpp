@@ -1,11 +1,11 @@
 #pragma once
 
-#include "vector2.h"
-#include "vector3.h"
-#include "vector4.h"
-#include "matrix2x2.h"
-#include "matrix3x3.h"
-#include "matrix4x4.h"
+#include "vector2.hpp"
+#include "vector3.hpp"
+#include "vector4.hpp"
+#include "matrix2x2.hpp"
+#include "matrix3x3.hpp"
+#include "matrix4x4.hpp"
 
 namespace octdoc
 {

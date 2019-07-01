@@ -6,7 +6,16 @@ namespace octdoc
 {
 	namespace mth
 	{
-		template<typename T>
+		constexpr double PI = 3.1415926535897932;
+		constexpr double EPS = 1e-6;
+
+		template <typename T>
+		bool isNear(T a, T b, T eps = EPS)
+		{
+			return fabs(a - b) < eps;
+		}
+
+		template <typename T>
 		int Quadratic(T a, T b, T c, T& s1, T& s2)
 		{
 			T dis = b * b - 4 * a * c;

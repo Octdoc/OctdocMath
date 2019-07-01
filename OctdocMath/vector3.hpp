@@ -1,11 +1,19 @@
 #pragma once
 
-#include "helpers.h"
+#include "formulas.hpp"
+#include <iostream>
 
 namespace octdoc
 {
 	namespace mth
 	{
+		template<typename>class vec2;
+		template<typename>class vec3;
+		template<typename>class vec4;
+		template<typename>class mat2x2;
+		template<typename>class mat3x3;
+		template<typename>class mat4x4;
+
 		template <typename T>
 		class vec3
 		{
@@ -77,6 +85,8 @@ namespace octdoc
 			explicit operator T* () const { return &x; }
 			template <typename S>
 			explicit operator vec3<S>() { return vec3<S>(x, y, z); }
+			template <typename S>
+			vec3<S> WithType() { return (vec3<S>) * this; }
 		};
 
 		template <typename T>

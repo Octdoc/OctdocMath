@@ -1,5 +1,5 @@
 #include "CppUnitTest.h"
-#include "position.h"
+#include "position.hpp"
 #include <string>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -38,6 +38,41 @@ namespace UnitTest
 			m1 = p.GetWorldMatrix();
 			m2 = p.GetWorldMatrixInv();
 			Assert::IsTrue((m1 * m2).isNear(float4x4::Identity()), L"World");
+		}
+		TEST_METHOD(CastTest)
+		{
+			Position<float> pf;
+			pf.position = float3(1, 2, 3);
+			pf.rotation = float3(4, 5, 6);
+			pf.scale = float3(7, 8, 9);
+
+			Position<double> pd;
+			pd = pf.WithType<double>();
+
+			Assert::IsTrue(
+				(double)pf.position.x == pd.position.x &&
+				(double)pf.position.y == pd.position.y &&
+				(double)pf.position.z == pd.position.z &&
+				(double)pf.rotation.x == pd.rotation.x &&
+				(double)pf.rotation.y == pd.rotation.y &&
+				(double)pf.rotation.z == pd.rotation.z &&
+				(double)pf.scale.x == pd.scale.x &&
+				(double)pf.scale.y == pd.scale.y &&
+				(double)pf.scale.z == pd.scale.z);
+
+			Position<double> pd2;
+			pd2 = (Position<double>)pf;
+
+			Assert::IsTrue(
+				(double)pf.position.x == pd.position.x &&
+				(double)pf.position.y == pd.position.y &&
+				(double)pf.position.z == pd.position.z &&
+				(double)pf.rotation.x == pd.rotation.x &&
+				(double)pf.rotation.y == pd.rotation.y &&
+				(double)pf.rotation.z == pd.rotation.z &&
+				(double)pf.scale.x == pd.scale.x &&
+				(double)pf.scale.y == pd.scale.y &&
+				(double)pf.scale.z == pd.scale.z);
 		}
 	};
 }

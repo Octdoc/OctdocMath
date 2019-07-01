@@ -1,6 +1,6 @@
 #pragma once
 
-#include "linalg.h"
+#include "linalg.hpp"
 
 namespace octdoc
 {
@@ -85,6 +85,8 @@ namespace octdoc
 				pos.scale = (vec3<S>)scale;
 				return pos;
 			}
+			template <typename S>
+			Position<S> WithType() { return (Position<S>) * this; }
 		};
 	}
 }

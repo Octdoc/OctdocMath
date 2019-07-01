@@ -1,5 +1,5 @@
 #include "CppUnitTest.h"
-#include "geometry3d.h"
+#include "geometry3d.hpp"
 #include <string>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -13,20 +13,20 @@ namespace UnitTest
 		TEST_METHOD(CTor_Tests)
 		{
 			{
-				Plain3D plain;
+				Plain3Dd plain;
 				Assert::IsTrue(plain.getNormal().isZeroVector() && plain.getDistance() == 0.0, L"empty ctor");
 			} {
 				double3 n(1.0, 2.0, 3.0);
 				double d = 4.0;
 				n.Normalize();
-				Plain3D plain(n, d);
+				Plain3Dd plain(n, d);
 				Assert::IsTrue(plain.getNormal() == n && plain.getDistance() == d, L"double3, double ctor");
 			}
 		}
 		TEST_METHOD(IsPointOn_Test)
 		{
 			double3x3 rotation = double3x3::Rotation(1.0, 2.0, 3.0);
-			Plain3D plain(rotation * double3(1.0, 0.0, 0.0), 1.0);
+			Plain3Dd plain(rotation * double3(1.0, 0.0, 0.0), 1.0);
 			double3 p_on = rotation * double3(1.0, 3.0, 2.0);
 			double3 p_off = rotation * double3(2.0, 3.0, 2.0);
 
@@ -36,7 +36,7 @@ namespace UnitTest
 		TEST_METHOD(IsPointBelow_Test)
 		{
 			double3x3 rotation = double3x3::Rotation(1.0, 2.0, 3.0);
-			Plain3D plain(rotation * double3(1.0, 0.0, 0.0), 1.0);
+			Plain3Dd plain(rotation * double3(1.0, 0.0, 0.0), 1.0);
 			double3 p_below = rotation * double3(0.5f, 3.0, 2.0);
 			double3 p_over = rotation * double3(2.0, 3.0, 2.0);
 
@@ -46,7 +46,7 @@ namespace UnitTest
 		TEST_METHOD(IsPointOver_Test)
 		{
 			double3x3 rotation = double3x3::Rotation(1.0, 2.0, 3.0);
-			Plain3D plain(rotation * double3(1.0, 0.0, 0.0), 1.0);
+			Plain3Dd plain(rotation * double3(1.0, 0.0, 0.0), 1.0);
 			double3 p_below = rotation * double3(0.5f, 3.0, 2.0);
 			double3 p_over = rotation * double3(2.0, 3.0, 2.0);
 
@@ -56,7 +56,7 @@ namespace UnitTest
 		TEST_METHOD(Distance_Test)
 		{
 			double3x3 rotation = double3x3::Rotation(1.0, 2.0, 3.0);
-			Plain3D plain(rotation * double3(1.0, 0.0, 0.0), 1.0);
+			Plain3Dd plain(rotation * double3(1.0, 0.0, 0.0), 1.0);
 			double3 p1 = rotation * double3(0.5, 3.0, 2.0);
 			double3 p2 = rotation * double3(2.0, 3.0, 2.0);
 
@@ -66,7 +66,7 @@ namespace UnitTest
 		TEST_METHOD(DirectionalDistance_Test)
 		{
 			double3x3 rotation = double3x3::Rotation(1.0, 2.0, 3.0);
-			Plain3D plain(rotation * double3(1.0, 0.0, 0.0), 2.0);
+			Plain3Dd plain(rotation * double3(1.0, 0.0, 0.0), 2.0);
 			double3 d = rotation * double3(-1.1f, 1.3f, -0.9f);
 			double3 p = rotation * double3(0.5f, 3.0, 2.0);
 			Assert::IsTrue(isNear(plain.DirectionalDistance(p, d), (0.5f - 2.0) / 1.1f), L"Below, negative distance");
@@ -84,7 +84,7 @@ namespace UnitTest
 		TEST_METHOD(TimeToGetClose)
 		{
 			double3x3 rotation = double3x3::Rotation(1.0, 2.0, 3.0);
-			Plain3D plain(rotation * double3(1.0, 0.0, 0.0), 2.0);
+			Plain3Dd plain(rotation * double3(1.0, 0.0, 0.0), 2.0);
 			double3 d = rotation * double3(-1.1f, 1.3f, -0.9f);
 			double3 p = rotation * double3(0.5f, 3.0, 2.0);
 			Assert::IsTrue(isNear(plain.TimeToGetClose(p, d, 1.0), (0.5f - 1.0) / 1.1f), L"Below, negative distance");

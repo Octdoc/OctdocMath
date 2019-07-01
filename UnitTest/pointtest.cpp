@@ -1,5 +1,5 @@
 #include "CppUnitTest.h"
-#include "geometry3d.h"
+#include "geometry3d.hpp"
 #include <string>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -13,25 +13,25 @@ namespace UnitTest
 		TEST_METHOD(CTor_Tests)
 		{
 			{
-				Point3D point;
+				Point3Dd point;
 				Assert::IsTrue(point.getPoint().isZeroVector(), L"empty ctor");
 			} {
 				double3 p(1.0, 2.0, 3.0);
-				Point3D point(p);
+				Point3Dd point(p);
 				Assert::IsTrue(point.getPoint() == p, L"double3, double ctor");
 			}
 		}	
 		TEST_METHOD(Distance_Tests)
 		{
 			double3x3 rotation = double3x3::Rotation(1.0, 2.0, 3.0);
-			Point3D point(rotation * double3(3.0, 0.0, 0.0));
+			Point3Dd point(rotation * double3(3.0, 0.0, 0.0));
 			double3 p = rotation * double3(1.0, 0.0, 0.0);
 			Assert::IsTrue(isNear(point.Distance(p), 2.0), L"Distance");
 		}
 		TEST_METHOD(DistanceSquare_Tests)
 		{
 			double3x3 rotation = double3x3::Rotation(1.0, 2.0, 3.0);
-			Point3D point(rotation * double3(3.0, 0.0, 0.0));
+			Point3Dd point(rotation * double3(3.0, 0.0, 0.0));
 			double3 p = rotation * double3(1.0, 0.0, 0.0);
 			Assert::IsTrue(isNear(point.DistanceSquare(p), 2.0 * 2.0), L"Distance");
 		}
@@ -39,7 +39,7 @@ namespace UnitTest
 		{
 			double3x3 rotation = double3x3::Rotation(1.0, 2.0, 3.0);
 			rotation = double3x3::Identity();
-			Point3D point(rotation * double3(4.0, 0.0, 0.0));
+			Point3Dd point(rotation * double3(4.0, 0.0, 0.0));
 			double3 p = rotation * double3(-2.0, -4.0, 0.0);
 			double3 d = rotation * double3(1.0, 0.0, 0.0);
 			Assert::IsTrue(isNear(point.TimeToGetClose(p, d, 5.0), 3.0), L"Positive");
